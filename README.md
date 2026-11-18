@@ -1,12 +1,12 @@
-# Merlin Relay for Windows
+# Merlin Relay
 
-Merlin is an LLM-driven procedural 3D authoring tool. Merlin for Meta Quest (Quest 3 / 3S) builds scenes from node graphs on your desk. The Merlin Relay is the PC side of it: it runs on a Windows PC on the same network as the headset, and chat prompts you send from the headset run as agent turns on the PC. The PC cooks and renders candidate graphs to check its work; the headset receives the final graph and cooks it itself.
+Merlin is an LLM-driven procedural 3D authoring tool. Merlin for Meta Quest (Quest 3 / 3S) builds scenes from node graphs on your desk. The Merlin Relay is the computer side of it: it runs on a PC or Mac on the same network as the headset, and chat prompts you send from the headset run as agent turns on the PC. The PC cooks and renders candidate graphs to check its work; the headset receives the final graph and cooks it itself.
 
-This repo only hosts the Windows download. It has no source code.
+This repo only hosts the downloads. It has no source code. The instructions below are for Windows; for macOS (Apple Silicon), download `Merlin-Relay-<version>-macos-arm64.dmg` and follow the release notes.
 
 ## Download
 
-Get `merlin-quest-relay-windows-x64-<version>.zip` from the [latest release](../../releases/latest).
+Get `Merlin-Relay-<version>-windows-x64.zip` from the [latest release](../../releases/latest).
 
 It contains:
 
@@ -17,6 +17,7 @@ It contains:
 | `merlin_render.exe` | Renders candidate scenes so the agent can see and score its work. |
 | `merlin_cook.exe` | Cooks node graphs into meshes for the agent's checks. |
 | `recipes/` | Example graphs the agent looks up while building. |
+| `msvcp140*.dll`, `vcruntime140*.dll` | The Visual C++ runtime, so no separate install is needed. |
 
 Keep all of these together in one folder. The relay looks for `merlin_render.exe` and `merlin_cook.exe` next to its own exe.
 
