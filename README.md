@@ -2,9 +2,39 @@
 
 Merlin is an LLM-driven procedural 3D authoring tool. Merlin for Meta Quest (Quest 3 / 3S) builds scenes from node graphs on your desk. The Merlin Relay is the computer side of it: it runs on a PC or Mac on the same network as the headset, and chat prompts you send from the headset run as agent turns on the PC. The PC cooks and renders candidate graphs to check its work; the headset receives the final graph and cooks it itself.
 
-This repo only hosts the downloads. It has no source code. The instructions below are for Windows; for macOS (Apple Silicon), download `Merlin-Relay-<version>-macos-arm64.dmg` and follow the release notes.
+This repo only hosts the downloads. It has no source code.
 
-## Download
+- [macOS (Apple Silicon)](#macos-apple-silicon)
+- [Windows](#windows-download)
+
+## macOS (Apple Silicon)
+
+### Download and install
+
+1. Get `Merlin-Relay-<version>-macos-arm64.dmg` from the [latest release](../../releases/latest).
+2. Open the DMG and drag **Merlin Relay** to **Applications**.
+3. The app is not notarised, so macOS blocks it the first time. Right-click **Merlin Relay** in Applications and choose **Open**. If macOS still blocks it, go to **System Settings → Privacy & Security** and choose **Open Anyway**.
+
+The app includes everything the relay needs: the renderer, the graph cooker and the recipes.
+
+### Requirements
+
+- A Mac with Apple Silicon.
+- An LLM provider, the same as on Windows (see [Windows requirements](#windows-requirements)). The default is **Claude Code**: install the [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code), log in once, and check that `claude --version` works in Terminal. The app reads your login shell's `PATH` when it starts.
+- The Mac and the headset on the same Wi-Fi / LAN.
+
+### Setup
+
+1. Open **Merlin Relay**. It runs from the menu bar. Click its icon and choose **Open Merlin Relay…** to see the status window, which shows the address it listens on (port 7777).
+2. If macOS asks to allow incoming connections or access to your local network, choose **Allow**.
+3. Put the headset on the same network. In Merlin, press **Connect** and pick your Mac.
+4. Accept the pairing request on the Mac. The headset then says it is paired.
+5. Type a prompt on the headset and press **Send**.
+
+If you install or update `claude` while the relay is running, quit it from the menu bar and open it again. The relay's key, paired devices and settings, and the optional `roles.toml` described under [Choosing models](#choosing-models), live in `~/.merlin/`.
+
+
+## Windows download
 
 Get `Merlin-Relay-<version>-windows-x64.zip` from the [latest release](../../releases/latest).
 
@@ -21,7 +51,7 @@ It contains:
 
 Keep all of these together in one folder. The relay looks for `merlin_render.exe` and `merlin_cook.exe` next to its own exe.
 
-## Requirements
+## Windows requirements
 
 - Windows 10 or 11, x64.
 - A GPU with current Vulkan (or DirectX 12) drivers, for rendering.
@@ -31,7 +61,7 @@ Keep all of these together in one folder. The relay looks for `merlin_render.exe
   - `openrouter`: needs an OpenRouter API key in the `OPENROUTER_API_KEY` environment variable.
 - The PC and the headset on the same Wi-Fi / LAN.
 
-## Setup
+## Windows setup
 
 1. Unzip the release anywhere, for example `Documents\Merlin Relay`.
 2. Run `merlin_relay_app.exe`. It lives in the system tray (check the `^` overflow area). Click the icon and choose **Open Merlin Relay…** (or run the exe again) to see its status window, which shows the address it listens on (port 7777).
